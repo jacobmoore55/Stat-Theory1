@@ -1,0 +1,268 @@
+---
+title: "Theory Quiz 1"
+author: "Jacob Moore"
+date: "2023-09-13"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question 1
+
+$X \sim f(x) = \frac{1 + \alpha}{x^{2 + \alpha}}, \quad x > 1$ for $\alpha > 0$
+
+### a.
+
+In order for the pdf to be valid, we need that $\int_{\mathcal{S}} f(x) \, dx = 1$ and $f(x) \geq 0$ for all $x > 1$. Since $x$ is strictly positive, then $x$ raised to any power must also be positive and $(1 + \alpha)$ is also positive, hence their product is positive and $f(x) > 0$ for all $x > 1$. Now to show the pdf integrates to $1$:
+$$
+\begin{aligned}
+\int_{\mathcal{S}} f(x) \, dx &= \int_1^{\infty} \frac{1+ \alpha}{x^{2+\alpha}} \, dx \\
+&= \lim_{r \to \infty} \left( \frac{(1+\alpha) x^{(-2-\alpha) + 1}}{(-2-\alpha) + 1}\right) \bigg|_1^r \\
+&= \lim_{r \to \infty} \left( -\frac{1}{r^{1 + \alpha}} \right)  - \left( -\frac{1}{(1)^{1 + \alpha}} \right) \\
+&= -\lim_{r \to \infty} \left( \frac{1}{r^{1 + \alpha}} \right) + 1 \\
+&= -(0) + 1 \quad \text{The limit is 0 since } \alpha > 0 \\
+&= 1
+\end{aligned}
+$$
+
+Hence, $f$ is a valid pdf.
+
+### b.
+
+$$
+\begin{aligned}
+P(X > c) &= \int_c^{\infty} \frac{1+ \alpha}{x^{2+\alpha}} \, dx \\
+&= \lim_{r \to \infty} \left( \frac{(1+\alpha) x^{(-2-\alpha) + 1}}{(-2-\alpha) + 1}\right) \bigg|_c^r \\
+&= \lim_{r \to \infty} \left( -\frac{1}{r^{1 + \alpha}} \right)  - \left( -\frac{1}{c^{1 + \alpha}} \right) \\
+&= -\lim_{r \to \infty} \left( \frac{1}{r^{1 + \alpha}} \right) + \frac{1}{c^{1+\alpha}} \\
+&= -(0) + \frac{1}{c^{1+\alpha}} \quad \text{The limit is 0 since } \alpha > 0 \\
+&= \frac{1}{c^{1+\alpha}}
+\end{aligned}
+$$
+Thus, $P(X > c) = \frac{1}{c^{1+\alpha}}$ for any $c > 1$.
+
+## Question 2
+
+Let $X$ be the number of defective widgets in the three units tested
+
+### a.
+
+$$
+\begin{aligned}
+P(X = 3) &= \frac{{4 \choose 3}{16 \choose 0}}{{20 \choose 3}} \\
+&= \frac{{4 \choose 3}}{{20 \choose 3}}
+\end{aligned}
+$$
+We can calculate this in R as:
+```{r}
+choose(4, 3)/choose(20, 3)
+dhyper(3, m = 4, n = 16, k = 3) #alternatively
+```
+
+### b. 
+
+$$
+\begin{aligned}
+P(X \geq 1) &= 1 - P(X = 0) \\ 
+&= 1 - \frac{{4 \choose 0}{16 \choose 3}}{{20 \choose 3}} \\
+&= 1 - \frac{{16 \choose 3}}{{20 \choose 3}}
+\end{aligned}
+$$
+In R:
+```{r}
+1 - choose(16, 3)/choose(20, 3)
+sum(dhyper(1:3, m = 4, n = 16, k = 3)) #alternatively
+```
+
+
+### c.
+
+If the first two widgets selected were found to be good, the that leaves 14 good units and 4 defective units left to be selected as the third unit. Hence:
+$$
+\begin{aligned}
+P(\text{3rd unit is good}) &= \frac{(14)}{(14) + (4)} \quad = \frac{ \text{ \# of good widgets left}}{ \text{ \# of total widgets left}} \\
+&= \frac{14}{18} = \frac{7}{9} \\
+&= 0.777...
+\end{aligned}
+$$
+
+## Question 3
+
+Let $F$ be the event that the student attends football games and Let $M$ and $M'$ represent males and females respectively. Since $M$ and $M'$ make a partition of the sample space (the student body). The law of total probability can be applied to $F$.
+
+### a.
+
+$$
+\begin{aligned}
+P(F) &= P((F \cap M) \cup (F \cap M')) \\
+&= P(F \cap M) + P(F \cap M') \\
+&= P(F | M) P(M) + P(F | M') P(M') \\
+&= (0.25) (0.45) + (0.20) (0.55) 
+&= 0.2225
+\end{aligned}
+$$
+
+### b.
+
+By Baye's Theorem:
+
+$$
+\begin{aligned}
+P(M | F) &= \frac{P(M \cap F)}{P(F)} \\
+&= \frac{P(F | M) P(M)}{P(F)} \\
+&= \frac{(0.25) (0.45)}{(0.2225)} &= 0.505618
+\end{aligned}
+$$
+
+## Question 4
+
+Let $X \sim Beta(2, 1)$ with a pdf $f_X(x) = 2x, \quad 0<x<1$. And let $Y = g(X) = \sqrt{X}$. Then $g$ is a monotone function and $g^{-1}(Y) = Y^2$ with $0 < y< 1$. We can calculate the pdf of $Y$ using the Jaocbian method:
+
+$$
+\begin{aligned}
+f_Y(y) &= f_X (g^{-1} (y)) \bigg| \frac{d}{dy} g^{-1} (y)\bigg|, \quad y \in \mathcal{Y} \\
+&= 2 (y^2) |(2y)|, \quad 0<y<1 \\
+&= 4 y^3 , \quad 0<y<1
+\end{aligned}
+$$
+Hence, $Y \sim Beta(4, 1)$
+
+## Question 5
+
+Let $X$ be distributed as a geometric series where $f_X(x) = (1-p)^x p, \quad x = 0, 1, 2,...$. Let $Y = X + 1$, then the support for $Y$ is $y = 1, 2, 3,...$ and the pmf is:
+$$
+\begin{aligned}
+f_Y(y) &= P(Y = y) = P((X + 1) = y) \\
+&= P(X = y- 1) \\
+&= f_X (y-1) \\
+&= (1-p)^{y-1} p, \quad y = 1, 2, 3,...
+\end{aligned}
+$$
+
+## Question 6
+
+### a.
+
+$$
+\begin{aligned}
+\int_0^1 f(x) \, dx &= \int_0^1 c (1 - x)^2 \, dx \\
+&= \left( -\frac{c (1-x)^3}{3}\right) \bigg|_0^1 \\
+&= \left( -\frac{c (1-(1))^3}{3}\right) - \left( -\frac{c (1-(0))^3}{3}\right) \\
+&= (0) - (- \frac{c}{3}) = \frac{c}{3} = 1 \\
+&\to c = 3
+\end{aligned}
+$$
+Alternatively, we can recognize this kernel along with the support as $X \sim Beta(1, 3)$, hence the result will integrate to equal $B(1, 3)$, where $B(\alpha, \beta)$ is the beta function, hence $c = \frac{1}{B(1, 3)}$. This can be calculated in R:
+```{r}
+1/beta(1, 3)
+```
+
+
+### b.
+
+It is easiest to calculate the mean and variance using the beta function:
+
+$$
+\begin{aligned}
+E(X) &= \int_0^1 x f(x) \, dx \\
+&= \int_0^1 x (3 (1 - x)^2) \, dx \\
+&= 3 \int_0^1 x (1 - x)^2 \, dx \\
+&= 3 B(2, 3)
+\end{aligned}
+$$
+In R:
+```{r}
+3 * beta(2, 3)
+```
+Hence $E(X) = \frac{1}{4}$. For the variance:
+
+$$
+\begin{aligned}
+Var(X) &= E((X - \mu)^2) = E(X^2) - E(X)^2 \\
+&= \int_0^1 x^2 f(x) \, dx - ( \frac{1}{4})^2 \\
+&= \int_0^1 x^2 (3 (1 - x)^2) \, dx - \frac{1}{16} \\
+&= 3 \int_0^1 x^2 (1 - x)^2 \, dx - \frac{1}{16} \\
+&= 3 B(3, 3) - \frac{1}{16}
+\end{aligned}
+$$
+In R:
+```{r}
+3 * beta(3, 3) - (1/16)
+```
+
+Thus, $Var(X) = \frac{3}{80}$
+
+### c. 
+
+$P(\mu - 2 \sigma < X < \mu + 2 \sigma) = F_X(\mu + 2 \sigma) - F_X (\mu - 2 \sigma)$ can be calculated in R as follows:
+
+```{r}
+mu <- 1 / 4; sigma = sqrt(3 / 80)
+lbound <- max(0, mu - 2 * sigma) # lower bound (max function is needed)
+ubound <- mu + 2 * sigma # upper bound
+pbeta(ubound, 1, 3) - pbeta(lbound, 1, 3)
+```
+Hence $P(\mu - 2 \sigma < X < \mu + 2 \sigma) \approx 0.95$
+
+\newpage
+
+## Question 7
+
+Let $D$ be the event that the subject has the disease and let $A$ and $B$ respresent the event of a positive test result from test A and test B, respectively. The sensitivities and specificities of the two test can be written as: $P(A | D) = 0.9$, $P(B | D) = 0.95$, $P(A' | D') = 0.94$ and $P(B' | D') = 0.92$. Since $D$ and $D'$ (with $P(D) = 0.01$ and $P(D') = 0.99$) partition the sample space, the law of total probability and Baye's theorem can be applied:
+
+### a
+
+$$
+\begin{aligned}
+P(D | (A \cap B)) &= \frac{P((A \cap B) | D) P(D)}{P((A \cap B) | D) P(D) + P((A \cap B) | D') P(D')} \quad \text{(Baye's theorem)}\\
+&= \frac{P(A|D) P(B | D) P(D)}{P(A|D) P(B | D) P(D) + P(A|D') P(B | D') P(D')} \quad \text{(Independence)} \\
+&= \frac{P(A|D) P(B | D) P(D)}{P(A|D) P(B | D) P(D) + (1 - P(A'|D')) (1 - P(B | D')) P(D')} \\
+&= \frac{(0.9)(0.95)(0.01)}{(0.9)(0.95)(0.01) + (1 - (0.94)))(1 - (0.92))(0.99)} \\
+&\approx 0.6427605
+\end{aligned}
+$$
+
+### b
+
+As stated in the question, the tests are independent, so $P(B | A) = P(B)$. We can calculate $P(B)$ using the law of total probability:
+
+$$
+\begin{aligned}
+P(B) &= P((B \cap D) \cup (B \cap D')) \\
+&= P(B \cap D) + P(B \cap D') \\
+&= P(B | D) P(D) + P(B | D') P(D') \\
+&= (0.95) (0.01) + (1 - (0.92)) (0.99)  \\
+&= 0.0887
+\end{aligned}
+$$
+
+\newpage
+
+## Question 8
+
+At $t = 0$, $M(0) = E(e^{X (0)}) = E(1) = 1$ and $M^{(r)}(0) = E( \frac{d^{(r)}}{dt^{(r)}}(e^{Xt} )|_{t = 0}) = E(X^r e^{X (0)}) = E(X^r)$. Let $\psi (t) = \ln M(t)$. For $\psi' (0)$,
+
+$$
+\begin{aligned}
+\frac{d}{dt} \psi (t) \bigg|_{t = 0} &= \frac{1}{M(0)} (M'(0))  \quad \text{(Chain rule)} \\
+&= \frac{1}{(1)} (E(X)) \\
+&= \mu
+\end{aligned}
+$$
+For $\psi''(0)$, 
+
+$$
+\begin{aligned}
+\frac{d^2}{dt^2} \psi (t) \bigg|_{t = 0} &= \frac{d}{dt}\left( \frac{1}{M(t)} (M'(t)) \right) \bigg|_{t = 0} \\
+&= \frac{M''(0) M(0) - M'(0) M' (0)}{M(0)^2} \quad \text{(Quotient rule)} \\
+&= \frac{(E(X^2))(1) - (E(X))(E(X))}{(1)^2} \\
+&= E(X^2) - E(X)^2 \\
+&= Var(X) \\
+&= \sigma^2
+\end{aligned}
+$$
+
+
+

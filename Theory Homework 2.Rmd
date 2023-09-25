@@ -1,0 +1,398 @@
+---
+title: "Math Stat Homework"
+author: "Jacob Moore"
+date: "2023-09-19"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Homework 4
+
+## Question 1
+
+### part a
+
+The function $Y = X^3$ is monotone where $0 < x < 1$. This implies that the support for $Y$ is $0 < y < 1$ (The function maps to the same interval). The inverse of the function is $X = \sqrt[3]{Y}$. Let $g^{-1} (y) = \sqrt[3]{y}$. Then $\frac{d}{dy} g^{-1} (y) = \frac{1}{3} y^{- \frac{2}{3}}$ thus:
+$$
+\begin{aligned}
+f_Y (y) &= f_X(g^{-1} (y)) \bigg| \frac{d}{dy} g^{-1}(y) \bigg|, \quad y \in \mathcal{Y} \\
+&= 42 \left( \sqrt[3]{y} \right)^5 (1 - (\sqrt[3]{y})) \bigg| \frac{1}{3} y^{- \frac{2}{3}} \bigg|, \quad 0 < y < 1 \\
+&= 14 (y - y^{ \frac{4}{3}}), \quad 0 < y < 1
+\end{aligned}
+$$
+
+To verify this is a valid distribution, we can verify that by integrating the PDF over the support and showing that it is equal to one. So:
+$$
+\begin{aligned}
+\int_{-\infty}^{\infty} f_Y(y) \, dy &= \int_0^1 14 (y - y^{ \frac{4}{3}}) \, dy \\
+&= 14 \left( \frac{y^2}{2}  - \frac{3 y^{\frac{7}{3}}}{7} \right) \bigg|_0^1 \\
+&= 14 \left( \frac{(1)^2}{2}  - \frac{3 (1 )^{\frac{7}{3}}}{7} \right) - 14 \left( \frac{(0)^2}{2}  - \frac{3 (0)^{\frac{7}{3}}}{7} \right) \\
+&= 14 \left( \frac{1}{2} - \frac{3}{7}\right) &= 1
+\end{aligned}
+$$
+
+Hence, The PDF of $Y$ is valid.
+
+### part b
+
+The function $Y = 4X+3$ is monotone where $x > 0$. This implies that the support for $Y$ is $y > 3$ (The minimum value for $x$ is $0$ which implies that the minimum for $y$ is $3$). The inverse of the function is $X = \frac{Y-3}{4}$. Let $g^{-1} (y) = \frac{y-3}{4}$. Then $\frac{d}{dy} g^{-1} (y) = \frac{1}{4}$ thus:
+$$
+\begin{aligned}
+f_Y (y) &= f_X(g^{-1} (y)) \bigg| \frac{d}{dy} g^{-1}(y) \bigg|, \quad y \in \mathcal{Y} \\
+&= 7 e^{-7 \left( \frac{y-3}{4} \right)} \bigg| \frac{1}{4} \bigg|, \quad y > 3 \\
+&= \frac{7}{4} e^{- \frac{7}{4} (y - 3)}, \quad y > 3
+\end{aligned}
+$$
+
+To verify this is a valid distribution, we can verify that by integrating the PDF over the support and showing that it is equal to one. So:
+$$
+\begin{aligned}
+\int_{-\infty}^{\infty} f_Y(y) \, dy &= \int_3^{\infty} \frac{7}{4} e^{- \frac{7}{4} (y - 3)} \, dy \\
+&= \left( -e^{- \frac{7}{4} (y-3)}\right) \bigg|_3^{\infty} \\
+&= (0) - \left( -e^{- \frac{7}{4} ((3)-3)} \right) \\
+&= e^{- \frac{7}{4} (0)} &= 1
+\end{aligned}
+$$
+
+Hence, The PDF of $Y$ is valid.
+
+## Question 2
+
+The function $Y = \frac{X}{X+1}$ is a monotone function where $x = 0, 1, 2, ...$. Hence, the support for $y$ is $y = 0, \frac{1}{2}, \frac{2}{3}, \frac{3}{4}, ...$ Thus, we can find the PMF of $Y$ as follows:
+$$
+\begin{aligned}
+f_Y (y) &= P(Y = y) = P( \frac{X}{X+1} = y) = P(X = y (X + 1)) \\
+&= P(X - yX = y) = P((1-y)X = y) \\
+&= P(X = \frac{y}{1-y}) = f_X ( \frac{y}{1-y})\\
+&= p (1-p)^{ \frac{y}{1 - y}}, \quad y = 0, \frac{1}{2}, \frac{2}{3}, \frac{3}{4}, ...
+\end{aligned}
+$$
+
+## Question 3 
+
+If we let $Y = g(X)$ where $g(X) = \frac{(X-1)^2}{4}$, then $g^{-1} (y) = 2\sqrt{y} + 1$ and $0 < y < 1$
+$$
+\begin{aligned}
+f_Y (y) &= f_X(g^{-1} (y)) \bigg| \frac{d}{dy} g^{-1}(y) \bigg|, \quad y \in \mathcal{Y} \\
+&= \frac{(2\sqrt{y} + 1)-1}{2} \bigg| \frac{1}{\sqrt{y}}\bigg| \\
+&= 1, \quad 0 < y < 1
+\end{aligned}
+$$
+
+Hence, $g(X) = \frac{(X-1)^2}{4}$ is a monotone function that gives $Y$ a uniform distribution.
+
+## Question 4
+
+### part a
+
+$f_X(x) = 3x^2, \quad 0 < x < 1$ implies that $F_X(x) = \int_0^x f_X(t) \, dt = x^3, \quad 0 < x < 1$, Hence:
+$$
+\begin{aligned}
+(0.5) &= F_X (\tilde{x}) \\
+&\to  (0.5) = \tilde{x}^3 \\
+&\to \tilde{x} = (0.5)^{1/3} = 0.7937005
+\end{aligned}
+$$
+
+### part b
+
+$f_X (x) = 4 x e^{-2x}, \quad x > 0$ implies that the CDF is:
+$$
+\begin{aligned}
+F_X(x) &= \int_0^x 4 t e^{-2t} \, dt \\
+&= 4 \left( -\frac{t e^{-2t}}{2} - \frac{e^{-2t}}{4} \right) \bigg|_0^x \\
+&= 4 \left( -\frac{(x) e^{-2(x)}}{2} - \frac{e^{-2(x)}}{4} \right) - 4 \left( -\frac{(0) e^{-2(0)}}{2} - \frac{e^{-2(0)}}{4} \right) \\
+&= -2 x e^{-2x}-e^{-2x} + 1
+\end{aligned}
+$$
+We can use R to numerically calculate the median
+
+```{r}
+F <- function(x) -2 * x * exp(-2 * x) - exp(-2 * x) + 1
+
+bound <- c(0, 999)
+repeat{
+  x <- sum(bound)/2
+  f_eval <- F(x)
+  if (f_eval > 0.5) bound[2] <- x
+  else bound[1] <- x
+  if (abs(f_eval - 0.5) < 1e-8) break
+}
+
+x
+F(x)
+
+qgamma(0.5, shape = 2, rate = 2) #alternatively
+```
+
+## Question 5
+
+### part a
+
+For $X \sim f(x) = ax^{a-1}, \quad 0 < x < 1$,
+
+$$
+\begin{aligned}
+E(X) &= \int_{-\infty}^{\infty} x f(x) \, dx \\
+&= \int_0^1 x (ax^{a - 1}) \, dx \\
+&= a \int_0^1 x^a \, dx \\
+&= \left( \frac{ax^{a+1}}{a+1}\right) \bigg|_0^1 \\
+&= \left( \frac{a(1)^{a+1}}{a+1}\right) - \left( \frac{a(0)^{a+1}}{a+1}\right) &= \frac{a}{a+1} \\
+\\
+Var(x) &= E((X - \mu)^2) = E(X^2) - \mu^2 \\
+&= \int_0^1 x^2 (a x^{a-1}) \, dx \, - \left( \frac{a}{a+1}\right)^2 \\
+&= a \int_0^1 x^{a+1} \, dx \, - \frac{a^2}{(a+1)^2}  \\
+&= \left( \frac{ax^{a+2}}{a+2}\right) \bigg|_0^1 - \frac{a^2}{(a+1)^2} \\
+&= \frac{a}{a+2} - \frac{a^2}{(a+1)^2} &= \frac{a}{(a+2)(a+1)^2}
+\end{aligned}
+$$
+
+### part b
+
+For $X \sim f(x) = \frac{1}{n}, \quad x = 1, 2, ..., n$,
+$$
+\begin{aligned}
+E(X) &= \sum_{x_i \in \mathcal{S}} x_i f(x_i) \\
+&= \sum_{i = 1}^{n} (i) \left( \frac{1}{n}\right) \\
+&= \frac{1}{n} \sum_{i = 1}^{n} i \\
+&= \frac{1}{n} \left( \frac{n (n+1)}{2}\right) &= \frac{n+1}{2} \\
+\\
+Var(x) &= E((X - \mu)^2) = E(X^2) - \mu^2 \\
+&= \sum_{i = 1}^{n} \left((i^2) \frac{1}{n}\right) - \left( \frac{n+1}{2}\right)^2 \\
+&= \frac{1}{n}\sum_{i = 1}^{n} (i^2) - \frac{(n+1)^2}{4} \\
+&= \frac{1}{n} \left( \frac{n (n+1) (2n+1)}{6}\right) - \frac{(n+1)^2}{4} \\
+&= \frac{(n+1) (2n+1)}{6} - \frac{(n+1)^2}{4} &= \frac{n^2 - 1}{12}
+\end{aligned}
+$$
+
+
+## Question 6
+
+### part a
+
+For $X \sim Exp(1)$, it is trivial to find that $\mu_X = 1$ and $\sigma_X^2 = 1$. The moment generating function for $X$ can be calculated as follows:
+$$
+\begin{aligned}
+M_X (t) &= E(e^{X t}) \\
+&= \int_0^{\infty} e^{x t} e^{-x} \, dx \\
+&= \int_0^{\infty} e^{(t - 1) x} \, dx \\
+&= \lim_{r \to \infty} \left( \frac{e^{(t - 1) x}}{t - 1}\right) \bigg|_0^r \\
+&= \lim_{r \to \infty} \left( \frac{ e^{(t - 1) (r)}}{t - 1}\right) - \left( \frac{ e^{(t - 1) (0)}}{t - 1}\right) \\
+&= (0) + \left( \frac{ 1}{1 - t}\right) \quad \text{for } t < 1 \\
+&= (1 - t)^{-1}, \quad t < 1
+\end{aligned}
+$$
+Now, to calculate $\mu_3$ and $\mu_4$, we will need the second, third and fourth moments of $X$, Thus we will calculate successive derivatives of $M(t)$:
+$$
+\begin{aligned}
+M_X (t) &= (1-t)^{-1}\\
+&\to \frac{d}{dt} M_X (t) = (1 - t)^{-2} \\
+&\to \frac{d^2}{dt^2} M_X (t) = 2(1 - t)^{-3} \\
+&\to \frac{d^3}{dt^3} M_X (t) = 6(1 - t)^{-4} \\
+&\to \frac{d^4}{dt^4} M_X (t) = 24(1 - t)^{-5} \\
+\end{aligned}
+$$
+It is clear to see from this pattern that
+$$
+\begin{aligned}
+E(X^r) = M^{(r)}_X (0) = r!
+\end{aligned}
+$$
+Hence, the $\mu_3$ and $\mu_4$ can be calculated as follows:
+$$
+\begin{aligned}
+\mu_3 &= E[(X-\mu)^3] = E[(X-(1))^3]\\
+&= E[X^3 - 3 X^2 + 3  X - 1] \\
+&= E[X^3] - 3 E[X^2] + 3 E[X] - 1 \\
+&= 3! - 3 (2!) + 3(1!) - 1 \\
+&= 2
+\end{aligned}
+$$
+For $\mu_4$:
+$$
+\begin{aligned}
+\mu_4 &= E[(X-\mu)^4] = E[(X-(1))^4] \\
+&= E[X^4 - 4 X^3 + 6 X^2 - 4 X + 1] \\
+&= E[X^4] - 4 E[X^3] + 6 E[X^2] - 4 E[X] + 1 \\
+&= 4! - 4 (3!) + 6 (2!) - 4 (1!) + 1 \\
+&= 9
+\end{aligned}
+$$
+
+Hence, the skewedness and kurtosis are:
+$$
+\begin{aligned}
+\alpha_3 &= \frac{\mu_3}{\mu_2^{3/2}} = \frac{(2)}{(1)^{3/2}} = 2 \\
+\alpha_4 &= \frac{\mu_4}{\mu_2^2} = \frac{(9)}{(1)^2} = 9
+\end{aligned}
+$$
+
+### part b
+
+For the distribution $X \sim \beta (4, 1)$, it is trivial to calculate $E[X^n]$:
+$$
+\begin{aligned}
+E[X^n] &= \int_0^1 x^n (4 x^3) \, dx \\
+&= 4 \int_0^1 x^{n + 3} \, dx \\
+&= 4 \left( \frac{x^{n+4}}{n+4}\right) \bigg|_0^1 \\
+&= \frac{4}{n+4}
+\end{aligned}
+$$
+This gives us a way of calculating the values for $\mu_2$, $\mu_3$, and $\mu_4$. To calculate $\mu_2$:
+$$
+\begin{aligned}
+\mu_2 &= E[(X - \mu)^2] \\
+&= E[X^2] - E[X]^2 \\
+&= ( \frac{2}{3}) - ( \frac{4}{5})^2 \\
+&= \frac{2}{75}
+\end{aligned}
+$$
+
+$\mu_3$ can be calculated as follows:
+$$
+\begin{aligned}
+\mu_3 &= E[(X-\mu)^3] = E[(X- \frac{4}{5})^3]\\
+&= E[X^3 - 3  ( \frac{4}{5})X^2 + 3 ( \frac{4}{5})^2 X - ( \frac{4}{5})^3] \\
+&= E[X^3] - \frac{12}{5} E[X^2] + \frac{48}{25} E[X] - \frac{64}{125} \\
+&= ( \frac{4}{7}) - \frac{12}{5} ( \frac{2}{3}) + \frac{48}{25} ( \frac{4}{5}) - \frac{64}{125} \\
+&= -\frac{4}{875}
+\end{aligned}
+$$
+$\mu_4$ can be calculated as follows:
+$$
+\begin{aligned}
+\mu_4 &= E[(X-\mu)^4] = E[(X-( \frac{4}{5}))^4] \\
+&= E[X^4 - 4 ( \frac{4}{5}) X^3 + 6 ( \frac{4}{5})^2 X^2 - 4 ( \frac{4}{5})^3 X + ( \frac{4}{5})^4] \\
+&= E[X^4] - \frac{16}{5} E[X^3] + \frac{96}{25} E[X^2] - \frac{256}{125} E[X] + \frac{256}{625} \\
+&= ( \frac{1}{2}) - \frac{16}{5} ( \frac{4}{7}) + \frac{96}{25} ( \frac{2}{3}) - \frac{256}{125} ( \frac{4}{5}) + \frac{256}{625} \\
+&\approx 0.002628571
+\end{aligned}
+$$
+
+Hence, the skewedness and kurtosis are:
+$$
+\begin{aligned}
+\alpha_3 &= \frac{\mu_3}{\mu_2^{3/2}} = \frac{(-4/875)}{(2/75)^{3/2}} \approx -1.049781  \\
+\alpha_4 &= \frac{\mu_4}{\mu_2^2} = \frac{(0.002628571)}{(2/75)^2} \approx 3.696428
+\end{aligned}
+$$
+
+## Question 7
+
+For $f(x) = \frac{2x}{65}, \quad 4 < x < 9$, we can find $V(X)$ as follows:
+
+$$
+\begin{aligned}
+V(X) &= E(X^2) - E(X)^2 \\
+&= \int_4^9 x^2 \left( \frac{2x}{65}\right) \, dx - \left( \int_4^9 x \left( \frac{2x}{65} \right) \, dx\right)^2 \\
+&= \frac{2}{65} \int_4^9 x^3 \, dx - \frac{4}{4225} \left( \int_4^9 x^2 \, dx\right)^2 \\
+&= \frac{2}{65} \left( \frac{x^4}{4}\right) \bigg|_4^9 - \frac{4}{4225} \left( \left( \frac{x^3}{3}\right) \bigg|_4^9 \right)^2 \\
+&= \frac{2}{65} \left( \frac{(9)^4}{4} - \frac{(4)^4}{4}\right) - \frac{4}{4225} \left( \frac{(9)^3}{3}  - \frac{(4)^3}{3}\right)^2 \\
+&= (48.5) -  (46.5194) \\
+&= 1.9806
+\end{aligned}
+$$
+
+So $V(X) = 1.9806$.
+
+\newpage
+
+# Homework 5
+
+## Question 1
+
+The binomial theorem tells us that for a nonnegative integer $n$,
+$$
+\begin{aligned}
+(x + y)^n = \sum_{i=0}^{n} {n \choose i} x^i y^{n - i}
+\end{aligned}
+$$
+For a binomial random variable, $X \sim \text{Binomial}(n, p)$, $X$ has a pmf
+$$
+\begin{aligned}
+f(x) = {n \choose x} p^x (1 - p)^{n - x}, \quad x = 0, 1, 2,..., n
+\end{aligned}
+$$
+Hence, if we sum the pmf over the support of $X$, we can apply the binomial theorem:
+$$
+\begin{aligned}
+\sum_{x = 0}^n f(x) &= \sum_{x=0}^n {n \choose x} p^x (1 - p)^{n - x} \\
+&= (p + (1 - p))^n \quad \text{Applying the binonmial theorem} \\
+&= (1)^n \\
+&= 1
+\end{aligned}
+$$
+
+## Question 2
+
+Let $X \sim \text{Binomial}(n, p)$, then we can find the mean as follows:
+$$
+\begin{aligned}
+E(X) &= \sum_{x \in \mathcal{X}} x f(x) \\
+&= \sum_{x = 0}^n x {n \choose x} p^x (1 - p)^{n - x} \\
+&= \sum_{x = 1}^n n {n - 1 \choose x - 1} p^x (1 - p)^{n - x} & (\text{Change index start since } x f(x)\text{ is 0 when x is 0})\\
+&= np \sum_{x = 1}^n {n - 1 \choose x - 1} p^{x - 1} (1 - p)^{(n - 1) - (x - 1)}\\
+&= np \sum_{y = 0}^{n - 1} {n - 1 \choose y} p^y (1 - p)^{(n - 1) - y} & ( \text{Change of variables where } y = x - 1)\\
+&= np (1) & (Y \sim \text{Binomial}(n - 1, p) \text{ so the pmf sums to 1 over the support})\\
+&= np
+\end{aligned}
+$$
+We can find the variance as follows:
+$$
+\begin{aligned}
+Var(X) &= E(X^2) - E(X)^2 \\
+&= E(X(X-1)) + E(X) - E(X)^2 \\
+&= \sum_{x=0}^n \left( x (x - 1) {n \choose x} p^x (1 - p)^{n - x} \right) + (np) - (np)^2 \\
+&= \sum_{x=2}^n \left( n (n - 1) {n - 2 \choose x - 2} p^x (1 - p)^{n - x} \right) + np - n^2 p^2 & (\text{Change index start since } x f(x)\text{ is 0 } \\&&\text{when x is 0 or 1})\\
+&= n (n - 1) p^2 \sum_{x=2}^n \left( {n - 2 \choose x - 2} p^{x-2} (1 - p)^{(n-2) - (x-2)} \right) + np - n^2 p^2 \\
+&= n (n - 1) p^2 \sum_{x=0}^{n-2} \left( {n - 2 \choose y} p^{y} (1 - p)^{(n-2) - y} \right) + np - n^2 p^2 & ( \text{Change of variables where } y = x - 2)\\
+&= n (n - 1) p^2 (1) + np - n^2 p^2 & (Y \sim \text{Binomial}(n - 2, p) \text{ so the pmf sums to}  \\&&\text{1 over the support})\\
+&= n^2 p^2 - n p^2 + np - n^2 p^2 \\
+&= np - n p^2 \\
+&= n p (1 - p)
+\end{aligned}
+$$
+
+## Question 3
+
+### part a
+
+Let $X$ be the number of students that withdraw from the course. Then $X$ has a Binomial Distribution with parameter values of $n = 50$ and $p = 0.30$.
+
+### part b
+
+$P(X = 10)$ can be calculated in R as
+```{r}
+dbinom(10, size = 50, prob = 0.30)
+```
+
+### part c
+
+For any binomial distribution, $E(X) = np$ (as shown in question 2), thus $E(X) = np = (50)(0.30) = 15$.
+
+### part d
+
+If at least 40 students remain, that implies 10 or fewer students withdraw, thus we can calculate $P(X \leq 10)$ in R as
+```{r}
+pbinom(10, size = 50, prob = 0.30)
+```
+
+Note: If $Y$ is the number of students that remain after the first exam, then $Y \sim \text{Binomial}(n = 50, p = 0.70)$, hence the question can also be posed as $P(Y \geq 40) = 1 - P(Y \leq 39)$ can be calculated in R as:
+```{r}
+1 - pbinom(39, size = 50, prob = 0.70)
+sum(dbinom(40:50, size = 50, prob = 0.70)) #alterantively
+```
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,235 @@
+---
+title: "Math Stat Homework"
+author: "Jacob Moore"
+date: "8/21/2023"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+# Homework 1
+
+## Question 1
+
+**Axiom**: A mathematical statement that's generally accepted as true and self-evident and is used as a groundwork for other, more complicated mathematical statements.
+
+**Theorem**: A mathematical statement which can be validated from a chain of logical reasoning which stems from axioms or corollaries of the axioms.
+
+**Proposition**: A mathematical statement that can either be true or false. If a proposition can be proven then it usually becomes a theorem or a law.
+
+**Lemma**: A mathematical theorem which is of less importance but is used as a stepping stone to prove a theorem of greater importance.
+
+**Corollary**: A true mathematical statement which is a deduction from a theorem or proposition.
+
+## Question 2
+
+Let $\mathcal{S}$ be a finite sample space and $P(\mathcal{S})$ is the power set of $\mathcal{S}$. Then $P(\mathcal{S})$ is a set of all subsets of $\mathcal{S}$. i.e. $P(\mathcal{S}) = \{x : x \subseteq \mathcal{S} \}$.
+
+### i. 
+Since $\varnothing \subseteq \mathcal{S}$, by definition, $\varnothing \in P(\mathcal{S})$.
+
+### ii.
+Let $x \subseteq \mathcal{S}$. So $x \in P(\mathcal{S})$ and we define $x^c = \{ s \in \mathcal{S} : s \notin x\}$. Since $x^c$ still can only possibly contain elements from $\mathcal{S}$, we know that $x^c \subseteq \mathcal{S}$, hence $x^c \in P(\mathcal{S})$. ($P(\mathcal{S})$ is closed under complementation)
+
+### iii.
+Let $x_1, x_2, ... \in P(\mathcal{S})$, then $x_i \subseteq \mathcal{S} \quad \forall \, i \geq 1$. Hence the union of any $x_i$ and $x_j$ should also be a subset of $\mathcal{S}$. It follows that the union of all subsets of $x_i$ will be a subset of $\mathcal{S}$ since all $x_i$'s can only contain elements from $\mathcal{S}$. Thus $\bigcup_{i=1}^{\infty} x_i \subseteq \mathcal{S}$ and hence $\bigcup_{i=1}^{\infty} x_i \in P(\mathcal{S})$.
+
+Thus, for a finite sample space $\mathcal{S}$, the power set is a $\sigma$-algebra
+
+## Question 3
+
+### a.
+
+$\mathcal{S} = \{ HHHH, HHHT, HHTH, HTHH, THHH, HHTT, HTHT, THHT, THTH,$
+
+$TTHH, HTTH, TTTH, TTHT, THTT, HTTT, TTTT\}$
+
+
+### b.
+
+If we let $l$ be the total number of leaves on a plant, than the sample space of the number of leaves damaged would be $\mathcal{S} = \{i \in \mathbb{Z} : 0 \leq i \leq l\}$.
+
+### c.
+
+$\mathcal{S} = \{ l \in \mathbb{R} : l \geq 0\}$
+
+### d.
+
+$\mathcal{S} = \{ w \in \mathbb{R} : w \geq 0\}$
+
+### e.
+
+$\mathcal{S} = \{ d \in \mathbb{Q}: 0 \leq d \leq 1\}$
+
+
+## Question 4
+
+### a.
+Proof: ($\subset$)
+
+Suppose $x \in A \, \cup B$, then this means $x \in A$ or $x \in B$. This is the same as saying $x \in B$ or $x \in A$. Hence $x \in B \, \cup A$.
+
+Likewise, suppose $x \in A \, \cap B$, then this means $x \in A$ and $x \in B$. This is the same as saying $x \in B$ and $x \in A$. Hence $x \in B \, \cap A$.
+
+($\supset$)
+
+Suppose $x \in B \, \cup A$, then this means $x \in B$ or $x \in A$. This is the same as saying $x \in A$ or $x \in B$. Hence $x \in A \, \cup B$.
+
+Likewise, suppose $x \in B \, \cap A$, then this means $x \in B$ and $x \in A$. This is the same as saying $x \in A$ and $x \in B$. Hence $x \in A \, \cap B$.
+
+### b.
+Proof: ($\subset$)
+
+Suppose $x \in A \, \cup (B \, \cup C)$. This means that $x \in A$ or $x \in B \, \cup C$, and the latter means that $x \in B$ or $x \in C$. Hence, $x \in A$ or $x \in B$ or $x \in C$. Equivalently, $x \in A \, \cup B$ or $x \in C$. Thus, $x \in (A \, \cup B) \,\cup C$.
+
+Likewise, suppose $x \in A \, \cap (B \, \cap C)$. This means that $x \in A$ and $x \in B \, \cap C$, and the latter means that $x \in B$ and $x \in C$. Hence, $x \in A$ and $x \in B$ and $x \in C$. Equivalently, $x \in A \, \cap B$ and $x \in C$. Thus, $x \in (A \, \cap B) \,\cap C$.
+
+($\supset$)
+
+Suppose $x \in (A \, \cup B) \, \cup C$. This means that $x \in A \, \cup B$ or $x \in C$, and the former means that $x \in A$ or $x \in B$. Hence, $x \in A$ or $x \in B$ or $x \in C$. Equivalently, $x \in A$ or $x \in B \, \cup C$. Thus, $x \in A \, \cup (B \,\cup C)$.
+
+Likewise, suppose $x \in (A \, \cap B) \, \cap C$. This means that $x \in A \, \cap B$ and $x \in C$, and the former means that $x \in A$ and $x \in B$. Hence, $x \in A$ and $x \in B$ and $x \in C$. Equivalently, $x \in A$ and $x \in B \, \cap C$. Thus, $x \in A \, \cap (B \,\cap C)$.
+
+
+### c.
+
+Proof (1st DeMorgan's Law): ($\subset$)
+
+Suppose $x \in (A \, \cup B)^c$. This means that $x \notin A \, \cup B$. From this, we can infer that $x \notin A$ and $x \notin B$ since the element is not located in the union of $A$ and $B$. From this we can infer that $x \in A^c$ and $x \in B^c$. Thus $x \in A^c \, \cap B^c$.
+
+($\supset$)
+
+Suppose $x \in A^c \, \cap B^c$. This means that $x \in A^c$ and $x \in B^c$. So $x \notin A$ and $x \notin B$, and this implies that the element $x$ is not located in the union of $A$ and $B$, i.e. $x \notin A \, \cup B$. Thus we conclude that $x \in (A \, \cup B)^c$.
+
+Proof (2nd DeMorgan's Law): ($\subset$)
+
+Suppose $x \in (A \, \cap B)^c$. This means that $x \notin A \, \cap B$. From this, we can infer that $x \notin A$ or $x \notin B$ since the element is not located in the intersection of $A$ and $B$. From this we can infer that $x \in A^c$ or $x \in B^c$. Thus $x \in A^c \, \cup B^c$.
+
+($\supset$)
+
+Suppose $x \in A^c \, \cup B^c$. This means that $x \in A^c$ or $x \in B^c$. So $x \notin A$ or $x \notin B$, and this implies that the element $x$ is not located in the intersection of $A$ and $B$, i.e. $x \notin A \, \cap B$. Thus we conclude that $x \in (A \, \cap B)^c$.
+
+\newpage
+
+# Homework 2
+
+## Question 1
+### a.
+If every person has one surname and two given names, their initials will be three letters with 26 options for each of the letters, so the number of sets of initials is $26^3 = 17576$.
+### b.
+If every person has one surname and one or two given names, their initials will be two or three letters with 26 options for each of the letters, so the number of sets of initials is $26^2 + 26^3 = 18252$.
+
+## Question 2
+### a.
+Assuming the chips are unordered, the sample space for this particular problem is 
+$$
+\mathcal{S} = \{ \{ x_1, x_2, x_3, x_4 \} : (x_1, x_2, x_3) \in \{ D, R, F\}, \, x_4 \in \{D, R \} \}
+$$
+where $D =$ a Dorito chip, $R =$ a Ruffles chip, and $F =$ a Frito chip.
+
+### b.
+There are $16 \choose 4$ possible chip samples and $7 \choose 4$ samples contain all Ruffles, hence
+$$
+P(\text{all Ruffles}) = \frac{{7 \choose 4}}{{16 \choose 4}} = 0.01923077
+$$
+
+### c.
+There are $16 \choose 4$ possible chip samples and $9 \choose 4$ samples contain no Ruffles (6 Doritos + 3 Fritos), Hence
+$$
+P(\text{no Ruffles}) = \frac{{9 \choose 4}}{{16 \choose 4}} = 0.06923077
+$$
+
+### d.
+Let $C =$ at least one 'chip' in the sample (e.g. $D =$ at least one Dorito is in the sample). Thus, we are asked for $P(D \cap R \cap F)$. Using DeMorgan's law:
+$$
+P(D \cap R \cap F) = 1 - P((D \cap R \cap F)^c) = 1 - P(D^c \cup R^c \cup F^c)
+$$
+Now $D^c$ and $R^c$ are disjoint since $D^c \cap R^c = \emptyset$ (Since there's only three Fritos), However, $D^c \cap F^c = \{\text{all Ruffles}\}$ and $R^c \cap F^c = \{\text{all Doritos}\}$. So, 
+$$
+\begin{aligned}
+P(D^c \cup R^c \cup F^c) 
+&= P(D^c) + P(R^c) + P(F^c) - P(D^c \cap R^c) - P(D^c \cap F^c) - P(R^c \cap F^c) + P(D^c \cap R^c \cap F^c) \\
+&= P(\text{no Doritos}) + P(\text{no Ruffles}) + P(\text{no Fritos}) - (0) - P(\text{all Ruffles}) - P(\text{all Doritos}) + (0) \\
+&= \frac{{10 \choose 4}}{{16 \choose 4}} + \frac{{9 \choose 4}}{{16 \choose 4}} + \frac{{13 \choose 4}}{{16 \choose 4}} - \frac{{7 \choose 4}}{{16 \choose 4}} - \frac{{6 \choose 4}}{{16 \choose 4}} \\
+&= 0.55
+\end{aligned}
+$$
+Hence,
+$$
+P(D \cap R \cap F) = 1 - P(D^c \cup R^c \cup F^c) = 1 - (0.55) = 0.45
+$$
+
+## Question 3
+### a.
+Let $X$ be the number of defective lightbulbs in the sample, so
+$$
+P(X \geq 1) = 1 - P(X = 0)
+$$
+There are $46 \choose 5$ number of possible samples with no bad bulbs and $50 \choose 5$ total possible samples, thus
+$$
+P(X \geq 1) = 1 - P(X = 0) = 1 - \frac{{46 \choose 5}}{{50 \choose 5}} = 1 - (0.6469605) = 0.3530395
+$$
+
+### b. 
+Let $k$ be the number of bulbs selected and let $f(k) = P(X \geq 1 \, | \, k)$. From the last part, we can see that
+$$
+f(k) = 1 - \frac{{46 \choose k}}{{50 \choose k}}
+$$
+When testing this function, we find that $f(7) = 0.4641337$ and $f(8) = 0.5139818$. So, this means that at least 8 bulbs should be examined so the probability of finding at least one defective bulb is greater than 50%.
+
+## Question 4
+From class, we learned that
+$$
+P(\text{at least 2 people with the same birthday}) = 1 - P(\text{no one shares the same birthday})
+$$
+For $n \leq 365$, the number of possible birthday combinations is $365^n$ and the number of birthday combinations where no one shares a birthday is $P(365, n) = \frac{365!}{(365-n)!}$ Hence the probability that no one shares a birthday is $\frac{P(365, n)}{365^n}$. Thus, 
+$$
+f(n) := P(\text{at least 2 people with the same birthday} \, | \, n) = 1 - \frac{P(365, n)}{365^n}
+$$
+When testing $f(n)$, we find that $f(57) = 0.9901225$, So, in a room of 57 people or more, there's over a 99% chance that at least 2 people share a birthday.
+
+\newpage
+
+# Homework 3
+
+## Question 1
+
+Let $P(A_1) = 0.5$, $P(A_2) = 0.3$, and $P(A_3) = 0.2$. We also have that $P(E | A_1) = 0.6$, $P(E | A_2) = 0.25$, and $P(E | A_3) = 0.15$. Since $\{A_1, A_2, A_3\}$ make a partition of the sample space, we can find $P(E)$ using the law of total probability:
+$$
+P(E) = \sum_{i=1}^3 P(E | A_i) \, P(A_i) = (0.6)(0.5)+(0.25)(0.3)+(0.15)(0.2) = 0.405
+$$
+Hence, using Bayes' theorem, we can calculate $P(A_i | E)$:
+$$
+\begin{aligned}
+P(A_1 | E) &= \frac{P(E | A_1) \, P(A_1)}{P(E)} = \frac{(0.6)(0.5)}{(0.405)} = 0.7407407 \\
+P(A_2 | E) &= \frac{P(E | A_2) \, P(A_2)}{P(E)} = \frac{(0.25)(0.3)}{(0.405)} = 0.1851852 \\
+P(A_3 | E) &= \frac{P(E | A_3) \, P(A_3)}{P(E)} = \frac{(0.15)(0.2)}{(0.405)} = 0.07407407
+\end{aligned}
+$$
+
+## Question 2
+
+Let $A$ and $B$ be two mutually exclusive events with non-zero probability. Then by definition $A \cap B = \emptyset$, thus $P(A \cap B) = 0$. For $A$ and $B$ to be independent, we must have that $P(A | B) = P(A)$. Hence, $$
+P(A | B) = \frac{P(A \cap B)}{P(B)} = \frac{(0)}{P(B)} = (0) \neq P(A)
+$$
+Since we defined $A$ to have non-zero probably, $P(A | B) \neq P(A)$. So, $A$ and $B$ are dependent events.
+
+## Question 3
+
+Let $A$ and $B$ be two independent events with non-zero probability, then by definition of independence,
+$$
+P(A) \, P(B) = P(A \cap B) > 0
+$$
+Since $P(A)$ and $P(B)$ are both non-zero, their product must also be non-zero. Thus, $A$ and $B$ cannot be mutually exclusive since $P(A \cap B) > 0$.
+
+## Question 4
+
+No, $P(B^c) = \frac{1}{4}$ implies that $P(B) = \frac{3}{4}$, and since $P(A) = \frac{1}{3}$, by Bonferroni's inequality, we have that
+$$
+P(A \cap B) \geq P(A) + P(B) - 1 = (\frac{1}{3}) + (\frac{3}{4}) - 1 = \frac{1}{12}
+$$
+Thus, the intersection of $A$ and $B$ non-zero, so the events cannot be disjoint.
+
+\newpage
+
